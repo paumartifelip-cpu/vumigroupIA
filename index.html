@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VUMI IA · PAU MARTI</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy:        #1D3461;
+            --navy-dark:   #142449;
+            --navy-light:  #243d73;
+            --navy-card:   #1a2f5e;
+            --silver:      #8C9298;
+            --silver-light:#b0b7be;
+            --white:       #FFFFFF;
+            --off-white:   #f0f2f5;
+            --yt-red:      #FF0000;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--navy);
+            color: var(--white);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
+        }
+
+        /* ══════════════════ HEADER ══════════════════ */
+        .header {
+            background: var(--navy-dark);
+            border-bottom: 3px solid var(--silver);
+            padding: 40px 24px 36px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 28px;
+        }
+
+        /* VUMI® SVG logo text */
+        .logo-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo-vumi {
+            font-size: 64px;
+            font-weight: 800;
+            letter-spacing: 12px;
+            color: var(--white);
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .logo-vumi sup {
+            font-size: 22px;
+            font-weight: 600;
+            vertical-align: super;
+            letter-spacing: 0;
+        }
+
+        .logo-sub {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 6px;
+            color: var(--silver-light);
+            text-transform: uppercase;
+        }
+
+        /* ── YouTube big button ── */
+        .yt-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            background: var(--yt-red);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 18px 40px;
+            border-radius: 0;
+            border: none;
+            transition: background 0.2s, transform 0.1s;
+            width: 100%;
+            max-width: 560px;
+        }
+
+        .yt-btn:hover  { background: #cc0000; }
+        .yt-btn:active { transform: scale(0.98); }
+
+        .yt-btn svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--white);
+            flex-shrink: 0;
+        }
+
+        /* ── Search ── */
+        .search-wrap {
+            width: 100%;
+            max-width: 560px;
+            display: flex;
+            align-items: center;
+            background: var(--navy-light);
+            border: 2px solid var(--silver);
+            border-radius: 0;
+            padding: 0 14px;
+            height: 50px;
+            transition: border-color 0.2s;
+        }
+
+        .search-wrap:focus-within { border-color: var(--white); }
+
+        .search-wrap svg.s-icon {
+            width: 20px; height: 20px;
+            fill: var(--silver-light);
+            margin-right: 12px;
+            flex-shrink: 0;
+        }
+
+        #searchInput {
+            flex: 1;
+            border: none;
+            outline: none;
+            background: transparent;
+            color: var(--white);
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        #searchInput::placeholder { color: var(--silver); }
+
+        .clear-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            display: flex;
+            align-items: center;
+        }
+
+        .clear-btn svg { width: 18px; height: 18px; fill: var(--silver); }
+        .clear-btn:hover svg { fill: var(--white); }
+
+        /* ── Contact ── */
+        .contact-row {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 11px 22px;
+            border-radius: 0;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            text-transform: uppercase;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .contact-btn svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+
+        .wa-btn  { background: #25D366; color: var(--white); }
+        .wa-btn:hover  { background: #1fba5a; }
+
+        .ig-btn  { background: transparent; color: var(--white); border-color: var(--silver); }
+        .ig-btn:hover  { background: var(--silver); color: var(--navy-dark); }
+
+        /* ══════════════════ MAIN ══════════════════ */
+        .main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .cat-section { margin-top: 0; }
+
+        .cat-header {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--silver-light);
+            padding: 36px 0 14px;
+            border-bottom: 1px solid var(--navy-light);
+            margin-bottom: 20px;
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2px;
+            margin-bottom: 4px;
+        }
+
+        /* ── Cards ── */
+        .card {
+            background: var(--navy-card);
+            border: 1px solid var(--navy-light);
+            border-radius: 0;
+            padding: 22px 20px 18px;
+            display: flex;
+            flex-direction: column;
+            animation: fadeUp 0.4s ease backwards;
+            transition: background 0.2s, border-color 0.2s;
+        }
+
+        .card:hover {
+            background: var(--navy-light);
+            border-color: var(--silver);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 800;
+            color: var(--white);
+            letter-spacing: 0;
+            border-radius: 0;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--white);
+            line-height: 1.3;
+        }
+
+        .card-desc {
+            font-size: 12px;
+            font-weight: 400;
+            color: var(--silver-light);
+            margin-top: 5px;
+            line-height: 1.5;
+        }
+
+        .card-actions {
+            margin-top: auto;
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 9px 18px;
+            border-radius: 0;
+            font-family: inherit;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .btn:active { transform: scale(0.97); }
+
+        .btn svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+        .btn-open {
+            background: var(--white);
+            color: var(--navy-dark);
+        }
+        .btn-open:hover { background: var(--silver-light); }
+
+        .btn-video {
+            background: transparent;
+            color: var(--silver-light);
+            border: 1px solid var(--silver);
+        }
+        .btn-video:hover { background: var(--silver); color: var(--navy-dark); }
+
+        /* ── No results ── */
+        .no-results {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--silver);
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--navy-light);
+            padding: 24px;
+            text-align: center;
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--silver);
+            text-transform: uppercase;
+        }
+
+        /* ── Animations ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ══════════════════ MOBILE ══════════════════ */
+        @media (max-width: 600px) {
+            .logo-vumi { font-size: 44px; letter-spacing: 8px; }
+            .header    { padding: 28px 16px 24px; gap: 20px; }
+            .yt-btn    { font-size: 14px; padding: 16px 24px; }
+            .cat-grid  { grid-template-columns: 1fr; }
+            .card-actions { flex-direction: column; }
+            .btn       { width: 100%; }
+            .contact-btn { font-size: 12px; padding: 10px 14px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ════════════ HEADER ════════════ -->
+<header class="header">
+
+    <div class="logo-wrap">
+        <div class="logo-vumi">VUMI<sup>®</sup></div>
+        <div class="logo-sub">Inteligencia Artificial · Pau Marti</div>
+    </div>
+
+    <!-- BIG WHATSAPP BUTTON -->
+    <a href="https://wa.me/34601108311" target="_blank" rel="noopener noreferrer" class="yt-btn" style="background:#25D366; max-width:560px;">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        <span style="text-align:left; line-height:1.3;">
+            <span style="font-size:13px; opacity:0.9; display:block; letter-spacing:0.5px;">Transforma tu negocio y gana muchos más clientes y dinero</span>
+            <span style="font-size:11px; opacity:0.75; display:block; letter-spacing:1px; margin-top:2px;">a cambio de noches de hospedaje · Escríbenos ahora</span>
+        </span>
+    </a>
+
+    <!-- BIG YOUTUBE BUTTON -->
+    <a href="https://www.youtube.com/@paumartifelip" target="_blank" rel="noopener noreferrer" class="yt-btn">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+        </svg>
+        Ver tutoriales en YouTube — @paumartifelip
+    </a>
+
+    <!-- SEARCH -->
+    <div class="search-wrap">
+        <svg class="s-icon" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Buscar herramientas..." autocomplete="off">
+        <button class="clear-btn" id="clearSearch" aria-label="Limpiar" style="display:none;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+            </svg>
+        </button>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="contact-row">
+        <a href="https://wa.me/34601108311" target="_blank" rel="noopener noreferrer" class="contact-btn wa-btn">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            WhatsApp · Pau Marti
+        </a>
+        <a href="https://www.instagram.com/paumartifelip/" target="_blank" rel="noopener noreferrer" class="contact-btn ig-btn">
+            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.266.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.584.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.668-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            @paumartifelip
+        </a>
+    </div>
+
+</header>
+
+<!-- ════════════ MAIN ════════════ -->
+<main class="main">
+    <div id="toolsGrid"></div>
+    <div id="noResults" class="no-results" style="display:none;">Sin resultados</div>
+</main>
+
+<footer>VUMI® · Herramientas de Inteligencia Artificial · Pau Marti</footer>
+
+<!-- ════════════ SCRIPT ════════════ -->
+<script>
+const toolsData = [
+    // ── Productividad y Asistencia Personal ──
+    { title:"MAX PROMPT",             url:"https://chatgpt.com/g/g-688089637d1c8191bbf0c2a936580018-max-prompt",             desc:"Domina el arte de hablar con la IA para obtener resultados increíbles en segundos",                              cat:"Productividad y Asistencia Personal", video:null },
+    { title:"GEMINI",                 url:"https://gemini.google.com/app",                                                   desc:"Tu asistente inteligente para automatizar tareas diarias y analizar tus documentos personales",                  cat:"Productividad y Asistencia Personal", video:null },
+    { title:"CANVAS O LIENZO",        url:"https://chatgpt.com/",                                                            desc:"Escribe y mejora textos directamente con ayuda de la IA",                                                         cat:"Productividad y Asistencia Personal", video:null },
+    { title:"NAPKIN AI",              url:"https://www.napkin.ai/",                                                          desc:"Transforma tus ideas y textos en diagramas y visuales explicativos al instante",                                  cat:"Productividad y Asistencia Personal", video:"https://youtu.be/22hrGh8gnM8" },
+    { title:"ARTICULERO",             url:"https://chatgpt.com/g/g-691a768560748191a76e32f2f960eb1e-articulero-2-0",         desc:"Tu redactor personal para crear artículos y blogs profesionales con un par de clics",                              cat:"Productividad y Asistencia Personal", video:null },
+    { title:"IA PARA NIÑOS",          url:"https://chatgpt.com/g/g-68711f8bed148191b3391b1f24652b1d-ia-para-ninos",          desc:"Una forma segura y divertida de que los más pequeños aprendan y creen con IA",                                    cat:"Productividad y Asistencia Personal", video:null },
+    // ── Gestión del Conocimiento e Información ──
+    { title:"NOTEBOOK LM",            url:"https://notebooklm.google/",                                                      desc:"Convierte textos largos en resúmenes fáciles, podcasts o mapas mentales automáticos",                               cat:"Gestión del Conocimiento e Información", video:"https://youtu.be/cWDuY4nu-ME" },
+    { title:"INVESTIGACIONES PROFUNDAS", url:"https://gemini.google.com/app",                                                desc:"Realiza investigaciones avanzadas en internet con datos comparados y organizados",                                  cat:"Gestión del Conocimiento e Información", video:"https://youtu.be/FUZV1WVjyKY" },
+    // ── Creación de Contenido Visual ──
+    { title:"MIDJOURNEY",             url:"https://www.midjourney.com/",                                                     desc:"La herramienta líder para crear imágenes artísticas y profesionales con solo describirlas",                         cat:"Creación de Contenido Visual", video:"https://youtu.be/i2EvIWFKCmk" },
+    { title:"NANOBANANA",             url:"https://gemini.google.com/app",                                                   desc:"Generación de imágenes de alta calidad integradas en tu flujo de trabajo diario",                                  cat:"Creación de Contenido Visual", video:"https://youtu.be/qM7QGMTSTCw" },
+    { title:"KLING AI",               url:"https://app.klingai.com/global/",                                                 desc:"Generador de vídeos realistas y profesionales a partir de texto de forma ultrarrápida",                             cat:"Creación de Contenido Visual", video:null },
+    { title:"HEYGEN",                 url:"https://app.heygen.com/",                                                         desc:"Crea avatares que hablan y traduce vídeos manteniendo tu propia voz de forma natural",                               cat:"Creación de Contenido Visual", video:"https://youtu.be/JHcJWzERWJM" },
+    { title:"GOOGLE FLOW",            url:"https://labs.google/flow/about",                                                  desc:"Experimenta con el futuro de la IA narrativa y flujos de trabajo inteligentes de Google",                          cat:"Creación de Contenido Visual", video:"https://youtu.be/QO3MIleJ0Yo" },
+    // ── Desarrollo y Creación Web ──
+    { title:"CODEX",                   url:"https://openai.com/es-419/codex/",                                               desc:"El agente de programación de OpenAI que escribe, revisa y depura código por ti de forma autónoma",                  cat:"Desarrollo y Creación Web", video:"https://youtube.com/playlist?list=PL1NyP0v_EJ5zeeiHwdbnR1WLsyJ-WJlz6&si=RYiqTxOarFcP3BJB" },
+    { title:"GOOGLE ANTIGRAVITY",     url:"https://antigravity.google/",                                                     desc:"Diseña apps y páginas web profesionales sin necesidad de saber programación",                                       cat:"Desarrollo y Creación Web", video:"https://www.youtube.com/playlist?list=PL1NyP0v_EJ5x-OPdCIiD-VKJ8X1MpXet3" },
+    { title:"LOVABLE",                url:"https://lovable.dev/",                                                            desc:"Construye sitios web completos en minutos simplemente describiendo lo que quieres",                                 cat:"Desarrollo y Creación Web", video:"https://youtu.be/AKKxQcp_Chk" },
+    // ── Edición y Multimedia ──
+    { title:"CREAR CANCIONES",        url:"https://suno.com/",                                                               desc:"Crea canciones completas con letra y música desde cero en cualquier estilo",                                       cat:"Edición y Multimedia", video:"https://youtu.be/-a1mXFBSKQA" },
+    { title:"GOOGLE VIDS",            url:"https://workspace.google.com/intl/es-419/products/vids/",                         desc:"Crea presentaciones de vídeo dinámicas y contenido visual para tus proyectos",                                     cat:"Edición y Multimedia", video:"https://youtube.com/live/XTGB8muRWFM?feature=share" },
+    { title:"OPUS CLIP",              url:"https://www.opus.pro/es-es",                                                      desc:"Convierte vídeos largos en clips cortos virales para redes sociales con un clic",                                  cat:"Edición y Multimedia", video:"https://youtu.be/deR4y0NGEM4" },
+    // ── Clientes ──
+    { title:'ROBERTO "EL TIBURÓN"',        url:"https://chatgpt.com/g/g-6a1725ac7b088191817d876756303ce8-roberto-el-tiburon-el-agresivo-ocupado",       desc:"El cliente agresivo y ocupado — practica cómo cerrar ventas bajo presión",              cat:"Clientes", video:null },
+    { title:'ELENA "LA ANALÍTICA"',         url:"https://chatgpt.com/g/g-6a1726630afc81919f25e6b014708347-elena-la-analitica-la-detallista-cfo",         desc:"La CFO detallista — aprende a responder objeciones técnicas y financieras",            cat:"Clientes", video:null },
+    { title:'CARLOS "EL INDECISO DEL PRECIO"', url:"https://chatgpt.com/g/g-6a172700e03c81918d2868918f704f6c-carlos-el-indeciso-del-precio-el-ahorrador", desc:"El cliente ahorrador — entrena cómo defender el valor de tu propuesta",               cat:"Clientes", video:null },
+    { title:'VALERIA "LA INVENCIBLE"',      url:"https://chatgpt.com/g/g-6a172792f1408191802a440f384492ff-valeria-la-invencible-la-joven-sabelotodo",     desc:"La joven sabelotodo — perfecciona cómo conectar con clientes que lo cuestionan todo", cat:"Clientes", video:null },
+    // ── Automatización y Flujos ──
+    { title:"N8N",                    url:"https://n8n.io/",                                                                 desc:"Conecta todas tus apps y crea flujos de trabajo automáticos sin límites",                                          cat:"Automatización y Flujos", video:"https://www.youtube.com/playlist?list=PL1NyP0v_EJ5zBAqgfpOlS52LJ7URisaAP" },
+    { title:"MAKE",                   url:"https://www.make.com/",                                                           desc:"La plataforma visual para automatizar cualquier proceso digital de forma sencilla",                                 cat:"Automatización y Flujos", video:"https://youtu.be/HV4tZUneMXg" },
+    { title:"GOOGLE OPAL",            url:"https://opal.google/",                                                            desc:"Crea automatizaciones sencillas que te ahorran tiempo en tareas repetitivas",                                      cat:"Automatización y Flujos", video:"https://youtu.be/Wx5L_LEopgU" }
+];
+
+const ICON_COLORS = ['#1D3461','#243d73','#142449','#2a4a8a','#1a3255'];
+
+function initials(title) {
+    const w = title.trim().split(/\s+/);
+    return w.length === 1 ? w[0].slice(0,2) : w[0][0] + w[1][0];
+}
+
+function card(tool, idx) {
+    const el = document.createElement('div');
+    el.className = 'card';
+    el.style.animationDelay = `${idx * 0.04}s`;
+
+    const bg = ICON_COLORS[idx % ICON_COLORS.length];
+
+    const videoBtn = tool.video
+        ? `<a href="${tool.video}" target="_blank" rel="noopener noreferrer" class="btn btn-video">
+               <svg viewBox="0 0 24 24"><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
+               Vídeo
+           </a>`
+        : '';
+
+    el.innerHTML = `
+        <div class="card-top">
+            <div class="card-icon" style="background:${bg}; border:2px solid rgba(140,146,152,0.4);">${initials(tool.title)}</div>
+            <div>
+                <div class="card-title">${tool.title}</div>
+                <div class="card-desc">${tool.desc}</div>
+            </div>
+        </div>
+        <div class="card-actions">
+            <a href="${tool.url}" target="_blank" rel="noopener noreferrer" class="btn btn-open">
+                <svg viewBox="0 0 24 24"><path d="M19 19H5V5h7V3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z"/></svg>
+                Abrir
+            </a>
+            ${videoBtn}
+        </div>
+    `;
+    return el;
+}
+
+function render(term = '') {
+    const grid = document.getElementById('toolsGrid');
+    const noRes = document.getElementById('noResults');
+    grid.innerHTML = '';
+
+    const q = term.toLowerCase();
+    const list = q
+        ? toolsData.filter(t =>
+            t.title.toLowerCase().includes(q) ||
+            t.desc.toLowerCase().includes(q) ||
+            t.cat.toLowerCase().includes(q))
+        : toolsData;
+
+    if (!list.length) { noRes.style.display = 'block'; return; }
+    noRes.style.display = 'none';
+
+    const byCat = {};
+    list.forEach(t => (byCat[t.cat] = byCat[t.cat] || []).push(t));
+
+    let i = 0;
+    Object.entries(byCat).forEach(([cat, tools]) => {
+        const sec = document.createElement('div');
+        sec.className = 'cat-section';
+
+        const h = document.createElement('div');
+        h.className = 'cat-header';
+        h.textContent = cat;
+        sec.appendChild(h);
+
+        const g = document.createElement('div');
+        g.className = 'cat-grid';
+        tools.forEach(t => g.appendChild(card(t, i++)));
+        sec.appendChild(g);
+
+        grid.appendChild(sec);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    render();
+    const inp = document.getElementById('searchInput');
+    const clr = document.getElementById('clearSearch');
+
+    inp.addEventListener('input', () => {
+        const v = inp.value.trim();
+        clr.style.display = v ? 'flex' : 'none';
+        render(v);
+    });
+
+    clr.addEventListener('click', () => {
+        inp.value = '';
+        clr.style.display = 'none';
+        render();
+        inp.focus();
+    });
+});
+</script>
+</body>
+</html>
